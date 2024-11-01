@@ -1,0 +1,42 @@
+
+<!doctype html>
+<html>
+    <head>
+        <title>Exam Result Checker</title>
+        <style>
+            body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+            .container { width: 80%; margin: auto; }
+            h1 { color: #333; }
+            .content { margin-top: 20px; }
+            input[type="text"] { padding: 8px; width: 50%; }
+            button { padding: 10px; background-color: #4CAF50; color: white; border: none; }
+            .result { margin-top: 20px; font-weight: bold; }
+        </style>
+        <script>
+            const examData = {'25001': {'name': '김비봉', 'status': '합격'}, '25002': {'name': '김물리', 'status': '불합격'}, '25003': {'name': '김화학', 'status': '불합격'}, '25004': {'name': '김지구', 'status': '합격'}, '25005': {'name': '김생명', 'status': '합격'}, '25006': {'name': '김수학', 'status': '불합격'}, '25007': {'name': '김영어', 'status': '불합격'}, '25008': {'name': '김국어', 'status': '합격'}, '25009': {'name': '김한문', 'status': '합격'}, '25010': {'name': '김사회', 'status': '불합격'}};
+
+            function checkResult() {
+                const examNumber = document.getElementById("exam_number").value;
+                const resultDiv = document.getElementById("result");
+
+                if (examData[examNumber]) {
+                    const studentName = examData[examNumber].name;
+                    const passStatus = examData[examNumber].status;
+                    resultDiv.innerHTML = `학생 이름: ${studentName}, 합불 여부: ${passStatus}`;
+                } else {
+                    resultDiv.innerHTML = "수험번호를 찾을 수 없습니다.";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Exam Result Checker</h1>
+            <form onsubmit="event.preventDefault(); checkResult();">
+                <input type="text" id="exam_number" placeholder="Enter Exam Number" required>
+                <button type="submit">Check Result</button>
+            </form>
+            <div id="result" class="result"></div>
+        </div>
+    </body>
+</html>
